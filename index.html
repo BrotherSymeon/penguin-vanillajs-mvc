@@ -5,9 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Static Template</title>
+    <script src="/js/penguinController.js"></script>
+    <script src="/js/penguinModel.js"></script>
+    <script src="/js/penguinView.js"></script>
+    <script>
+      window.onload = function() {
+        console.log("hello");
+        var targetElement = document.getElementById("app");
+        var view = new PenguinView(targetElement);
+        var model = new PenguinModel(XMLHttpRequest);
+        var controller = new PenguinController(view, model);
+        controller.intialize();
+        controller.onClickGetPenguin({
+          currentTarget: { dataset: { penguinIndex: 0 } }
+        });
+      };
+    </script>
+    <style>
+      .list-of-penguins {
+        font-size: 100%;
+        font-family: "Roboto", sans-serif;
+        color: #333;
+      }
+
+      .penguin-image {
+        display: block;
+        height: 12em;
+      }
+
+      .button {
+        color: #333;
+        display: inline-block;
+        width: 7.8em;
+        text-decoration: none;
+        text-align: center;
+        line-height: 1.5em;
+        border: 0.06em solid #0066cc;
+      }
+
+      .next {
+        margin-left: 1.5em;
+      }
+    </style>
   </head>
   <body>
     <h1>MVC Demo</h1>
-    <li id="list"></li>
+    <div id="app"></div>
   </body>
 </html>
